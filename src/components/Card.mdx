@@ -1,0 +1,37 @@
+import { Meta, Primary, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as CardStories from './Card.stories';
+import Card from './Card'
+
+<Meta of={CardStories} />
+
+# Tarjeta de detalles de Producto (`<Card />`)
+
+## Descripción Principal
+
+Este componente se encacarga de mostrar una tarjeta con los detalles de un producto dinámicamente
+
+<Primary />
+
+## Tablas de propiedades
+
+<Controls />
+
+## Ejemplos
+
+### Basico
+
+<Story of={CardStories.Basico} />
+
+---
+
+### BiografiaLarga
+
+<Story of={CardStories.BiografiaLarga} />
+
+---
+
+### Sin Foto
+
+<Story of={CardStories.SinFoto} />
+
+---

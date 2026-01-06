@@ -1,25 +1,12 @@
-/**
- * Componente Nav
- * ---------------
- * Proporciona la barra de navegación principal del sitio con soporte para
- * dispositivos móviles mediante un menú hamburguesa.
- *
- * Accesibilidad:
- * - Usa `role="navigation"` y `aria-label` para describir el propósito del bloque.
- * - El botón hamburguesa gestiona estados accesibles (`aria-expanded`,
- *   `aria-controls`, `aria-haspopup`).
- * - El menú móvil usa `aria-hidden` para indicar visibilidad a lectores de pantalla.
- *
- * Responsividad:
- * - En pantallas grandes (md+), se muestra el menú horizontal.
- * - En pantallas pequeñas, se oculta el menú principal y aparece el hamburguesa.
- *
- * Estado:
- * - `open` controla si el menú móvil está visible o no.
- */
-
 import { Link, NavLink } from "react-router-dom";
 import { useState } from "react";
+
+/**
+ * Componente de navegación con menú responsivo.
+ * Gestiona un estado local para abrir/cerrar el menú en dispositivos móviles
+ * y proporciona enlaces de navegación semánticos.
+ * @returns {JSX.Element} Una sección de navegación con soporte para escritorio y móvil.
+ */
 
 function Nav() {
   const [open, setOpen] = useState(false); // Controla la apertura del menú móvil
@@ -28,25 +15,19 @@ function Nav() {
     <section
       role="navigation"
       aria-label="Navegación principal"
-      className="p-4 flex justify-between items-center text-white"
+      className="nav-main"
     >
       {/* Menú principal para pantallas grandes */}
-      <nav className="hidden md:flex gap-6" aria-label="Enlaces principales">
-        <Link to="/" className="hover:text-blue-300 transition">
-          Inicio
-        </Link>
-        <Link to="/productos" className="hover:text-blue-300 transition">
-          Productos
-        </Link>
-        <Link to="/admin" className="hover:text-blue-300 transition">
-          Administrador
-        </Link>
+      <nav className="nav-main__list" aria-label="Enlaces principales">
+        <Link to="/" className="nav-main__link">Inicio</Link>
+        <Link to="/productos" className="nav-main__link">Productos</Link>
+        <Link to="/admin" className="nav-main__link">Administrador</Link>
       </nav>
 
       {/* Botón hamburguesa para móvil */}
       <button
         onClick={() => setOpen(!open)}                     // Alterna estado
-        className="md:hidden text-3xl"
+        className="nav-main__toggle"
         aria-expanded={open}                               // Estado accesible
         aria-controls="mobile-menu"                        // Asocia botón con menú
         aria-haspopup="true"
@@ -58,8 +39,8 @@ function Nav() {
       {/* Menú móvil colapsable */}
       <nav
         id="mobile-menu"
-        className={`absolute top-16 right-4 primary-bg p-4 rounded-lg flex flex-col gap-3 md:hidden transition ${
-          open ? "block" : "hidden"
+        className={`nav-main__mobile-menu ${
+          open ? "nav-main__mobile-menu--open" : "nav-main__mobile-menu--closed"
         }`}
         aria-hidden={!open}                                   // Indica si está oculto
         aria-label="Menú móvil"
@@ -67,7 +48,7 @@ function Nav() {
         <NavLink
           to="/"
           onClick={() => setOpen(false)}                      // Cierra el menú al navegar
-          className="hover:text-blue-300"
+          className="nav-main__link"
         >
           Inicio
         </NavLink>
@@ -75,7 +56,7 @@ function Nav() {
         <NavLink
           to="/productos"
           onClick={() => setOpen(false)}
-          className="hover:text-blue-300"
+          className="nav-main__link"
         >
           Productos
         </NavLink>
@@ -83,7 +64,7 @@ function Nav() {
         <NavLink
           to="/admin"
           onClick={() => setOpen(false)}
-          className="hover:text-blue-300"
+          className="nav-main__link"
         >
           Administrador
         </NavLink>

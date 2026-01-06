@@ -1,16 +1,8 @@
 /**
- * Componente HomePage
- * -------------------
- * Página principal de la aplicación.
- *
- * - Utiliza una sección centrada tanto vertical como horizontalmente
- *   mediante flexbox.
- * - `min-h-[70vh]` asegura que la sección ocupe al menos el 70% de la altura
- *   de la ventana, manteniendo equilibrio visual.
- * - El título principal utiliza la clase personalizada `h1__basketmall`
- *   para mantener coherencia tipográfica con el resto del proyecto.
- * - Actualmente es estático, pero puede ampliarse con componentes dinámicos
- *   o secciones destacadas de productos.
+ * Vista de la página de inicio (Home).
+ * Punto de entrada principal de la aplicación que muestra el mensaje de bienvenida
+ * y establece la identidad visual de la landing page.
+ * @returns {JSX.Element} El contenedor de la página de inicio estilizado.
  */
 
 function HomePage() {

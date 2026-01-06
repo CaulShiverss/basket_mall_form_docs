@@ -1,14 +1,12 @@
+
 /**
- * Componente GridLayout
- * ----------------------
- * Proporciona una estructura semántica para secciones que contienen un título
- * opcional y contenido organizado (generalmente en forma de grid).
- *
- * - Usa <section> para delimitar una parte temática de la página.
- * - El título es opcional y solo se renderiza si se recibe la prop `titulo`.
- * - `aria-labelledby` asocia la sección con su encabezado para accesibilidad.
- * - `children` permite inyectar cualquier contenido (grillas, tarjetas, etc.).
+ * Componente de diseño para envolver contenidos en una sección centrada.
+ * @param {Object} props - Propiedades del componente.
+ * @param {React.ReactNode} props.children - Contenido o elementos que se renderizarán dentro de la sección.
+ * @param {string} [props.titulo] - (Opcional) Título principal que se muestra en la parte superior.
+ * @returns {JSX.Element} Una sección estructurada con soporte para accesibilidad.
  */
+
 function GridLayout({ children, titulo }) {
   return (
     <section

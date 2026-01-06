@@ -1,21 +1,14 @@
-/**
- * Componente Details
- * -------------------
- * Muestra la información detallada de un producto/película específico.
- *
- * - Obtiene el id de la URL mediante useParams() de react-router-dom.
- * - Busca el producto en la lista `productosBasket` usando el id.
- * - Estructura la página usando GridLayout para mantener consistencia de diseño.
- * - Incluye un BackButton para volver a la página anterior.
- * - La sección de detalles incluye imagen, nombre, categoría, precio y descripción.
- * - Muestra un mensaje accesible si el producto no se encuentra.
- * - Usa clases personalizadas y Tailwind para estilos y responsividad.
- */
-
 import BackButton from "../components/BackButton";
 import GridLayout from "../components/GridLayout";
 import productosBasket from "../data/productos";
 import { useParams } from "react-router-dom";
+
+/**
+ * Vista de detalles de un producto.
+ * Obtiene el ID del producto mediante parámetros de ruta y renderiza su información.
+ * Incluye un estado de error si el producto no existe en la base de datos local.
+ * @returns {JSX.Element} La página de detalles del producto o un mensaje de error.
+ */
 
 function Details() {
   const { id } = useParams();                     // Obtiene el id desde la ruta

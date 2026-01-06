@@ -1,36 +1,53 @@
-/**
- * Componente ProductsPage
- * ------------------------
- * Muestra un listado de todos los productos disponibles en la tienda.
- *
- * - Utiliza GridLayout para mantener coherencia visual y estructura.
- * - Cada producto se representa con un componente Card que incluye
- *   imagen, nombre, categoría, precio y descripción.
- * - Los productos están envueltos en enlaces (<Link>) que permiten
- *   navegar a la página de detalles correspondiente.
- * - La grilla es responsiva: 1 columna en móvil, 2 en tablet y 4 en escritorio.
- * - Se eliminan los estilos de lista predeterminados con `list-none` y
- *   se usan utilidades de Tailwind para espaciado y alineación.
- */
-
 import GridLayout from "../components/GridLayout";
 import Card from "../components/Card";
 import { Link } from "react-router-dom";
 import productosBasket from "../data/productos";
+import { useMemo, useState } from "react";
+import SearchBar from "../components/SearchBar";
+
+/**
+ * Página de catálogo de productos con buscador integrado.
+ * Maneja el filtrado dinámico de la lista de productos basada en la entrada del usuario.
+ * @returns {JSX.Element} La página de productos con buscador y grilla de resultados.
+ */
 
 function ProductsPage() {
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredProducts = useMemo(() => {
+    // 1. Aplanar la lista de actores y agregar información necesaria para el enlac
+
+    if (!searchTerm) {
+      return productosBasket; // Si no hay término, devuelve la lista completa
+    }
+
+    // 2. Filtrar por el nombre del actor
+    const lowerCaseSearchTerm = searchTerm.toLowerCase();
+    return productosBasket.filter((producto) =>
+      producto.nombre.toLowerCase().includes(lowerCaseSearchTerm)
+    );
+  }, [searchTerm]); //
+
   return (
+
     <GridLayout titulo="Productos">
 
       {/* Introducción al listado */}
-      <p className="body-text">
+      <p className="body-text pb-6">
         Listado de productos disponibles:
       </p>
+
+      <SearchBar
+          searchTerm={searchTerm}
+          onSearchChange={setSearchTerm}
+          placeholder="Buscar productos..."
+        />
 
       {/* Sección con la grilla de productos */}
       <section className="w-full mt-8">
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 list-none p-0 items-stretch">
-          {productosBasket.map((producto, index) => (
+          {filteredProducts.map((producto, index) => (
             // Enlace a la página de detalles del producto
             <Link to={`/productos/${index}`} key={index} className="no-underline">
 

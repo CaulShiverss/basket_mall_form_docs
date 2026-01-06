@@ -2,16 +2,183 @@
 @import "./theme.css";
 
 /* ==========================================
+   BLOQUE: Container
+   Descripción: Estilos asociados al contenedor principal de la aplicación
+   ========================================== */
+@layer components {
+  .layout-main {
+    @apply container mx-auto bg-white p-8 flex flex-col items-center justify-center;
+    /* Usamos min-h para asegurar que el contenido ocupe el espacio visual necesario */
+    min-height: 75vh;
+  }
+}
+
+/* ==========================================
    BLOQUE: Product Details
    Descripción: Contenedor principal de detalles
    de producto con dirección flex vertical
    ========================================== */
 .product-details {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  align-items: flex-start;
-  text-align: left;
+  @apply flex flex-col gap-2 items-start text-left;
+}
+
+/* ==========================================
+   BLOQUE: BackButton
+   Descripción: Estilos específicos para el componente BackButton
+   ========================================== */
+
+@layer components {
+  /* Bloque Principal: BackButton */
+  .back-button {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-300
+           bg-white text-sm font-medium text-gray-800 shadow-sm cursor-pointer transition;
+  }
+
+  /* Estados (Hover y Focus) */
+  .back-button:hover {
+    @apply bg-gray-100;
+  }
+
+  .back-button:focus {
+    @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+  }
+}
+
+/* ==========================================
+   BLOQUE: SearchBar
+   Descripción: Estilos específicos para el componente SearchBar
+   ========================================== */
+@layer components {
+  /* Estilo base para los inputs del formulario */
+  .search-bar {
+    @apply w-full p-3 border-2 border-gray-300 rounded-lg shadow-inner 
+           transition duration-150 ease-in-out 
+           focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+  }
+}
+
+/* ==========================================
+   BLOQUE: Formulario de Productos
+   Descripción: Estilos específicos para el componente ProductForm
+   ========================================== */
+
+@layer components {
+  /* Bloque: El formulario completo */
+  .form-admin {
+    @apply bg-white p-6 rounded-lg shadow-xl max-w-xl mx-auto w-full;
+  }
+
+  /* Elemento: Título */
+  .form-admin__title {
+    @apply text-2xl font-bold mb-6 text-gray-800; /* o tu clase h4__basketmall */
+  }
+
+  /* Elemento: Grupo de campo (Label + Input + Error) */
+  .form-admin__field {
+    @apply mb-4 space-y-1;
+  }
+
+  /* Elemento: Etiqueta */
+  .form-admin__label {
+    @apply block text-sm font-medium text-gray-700;
+  }
+
+  /* Elemento: Input base */
+  .form-admin__input {
+    @apply mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm 
+           focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors;
+  }
+
+  /* Modificador: Input con error */
+  .form-admin__input--error {
+    @apply border-red-500 focus:ring-red-500 bg-red-50;
+  }
+
+  /* Elemento: Mensaje de error */
+  .form-admin__error-text {
+    @apply mt-1 text-sm text-red-600;
+  }
+
+  /* Elemento: Botón de envío */
+  .form-admin__button {
+    @apply w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm 
+           font-medium text-white bg-blue-600 hover:bg-blue-700 
+           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 
+           disabled:opacity-50 disabled:cursor-not-allowed transition-all;
+  }
+}
+
+/* ==========================================
+   BLOQUE: Navegación del Header
+   Descripción: Estilos específicos para el componente Nav
+   ========================================== */
+@layer components {
+  /* Bloque: Navegación Principal */
+  .nav-main {
+    @apply p-4 flex justify-between items-center text-white;
+    background-color: var(
+      --colorprimary
+    ); /* Evitamos el error de unknown utility */
+  }
+
+  /* Elemento: Lista de enlaces (Escritorio) */
+  .nav-main__list {
+    @apply hidden md:flex gap-6;
+  }
+
+  /* Elemento: Enlace individual */
+  .nav-main__link {
+    @apply transition duration-200 hover:text-blue-300;
+  }
+
+  /* Elemento: Botón hamburguesa */
+  .nav-main__toggle {
+    @apply md:hidden text-3xl focus:outline-none;
+  }
+
+  .nav-main__mobile-menu {
+    @apply absolute top-16 right-4 p-4 rounded-lg md:hidden transition shadow-xl;
+    background-color: var(--colorprimary);
+    z-index: 50;
+  }
+
+  /* Modificador ABIERTO: Aquí es donde activamos el Flex y la Columna */
+  .nav-main__mobile-menu--open {
+    @apply flex flex-col gap-3; /* <--- Flex y Col al mismo tiempo */
+  }
+
+  /* Modificador CERRADO */
+  .nav-main__mobile-menu--closed {
+    @apply hidden;
+  }
+}
+
+/* ==========================================
+   BLOQUE: Card Styles
+   Descripción: Estilos específicos para el componente Card
+   ========================================== */
+@layer components {
+  .card-basket {
+    @apply flex flex-col items-start gap-3 p-4 rounded-lg bg-gray-100 shadow-md 
+           transition-transform duration-300 hover:shadow-lg hover:scale-105 h-full;
+  }
+
+  /* Elementos */
+  .card-basket__figure {
+    @apply w-full aspect-square rounded-lg bg-gray-200 overflow-hidden;
+  }
+
+  .card-basket__img {
+    @apply w-full h-full object-cover;
+  }
+
+  .card-basket__title {
+    @apply text-xl font-bold text-gray-800;
+  }
+
+  .card-basket--featured {
+    @apply border-2 border-blue-500 bg-blue-50;
+  }
 }
 
 /* ==========================================
@@ -28,6 +195,30 @@
   padding: 0.25rem 0.75rem;
   border-radius: 9999px;
   display: inline-block;
+}
+
+/* ==========================================
+   BLOQUE: Footer Style (Basketmall)
+   Descripción: Estilos específicos para el footer
+   con clases Basketmall
+   ========================================== */
+@layer components {
+  /* Bloque: Footer Principal */
+  .footer-main {
+    background-color: var(--colorprimary);
+    @apply text-white p-4 shadow-lg mt-8;
+  }
+
+  /* Elemento: Contenedor alineado */
+  .footer-main__container {
+    @apply container mx-auto flex justify-center items-center;
+    height: 7.5rem; /* Equivalente a h-30 (30 * 0.25rem) */
+  }
+
+  /* Elemento: Texto de copyright */
+  .footer-main__copy {
+    @apply text-center text-sm opacity-90;
+  }
 }
 
 /* ==========================================

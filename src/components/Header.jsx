@@ -1,15 +1,10 @@
-/**
- * Componente Header
- * ------------------
- * Encapsula el encabezado principal de la aplicación.
- *
- * - Incluye el título "Basket Mall" como identificador visual del sitio.
- * - Incorpora el componente <Nav />, que contiene la barra de navegación.
- * - Utiliza estilos Tailwind y la clase personalizada `primary-bg`
- *   para mantener coherencia con la identidad visual del proyecto.
- * - El contenedor interno centra el contenido y lo distribuye con flexbox.
- */
 import Nav from "./Nav";
+
+/**
+ * Componente de cabecera principal de la aplicación.
+ * Renderiza el logo/título y el menú de navegación en un contenedor con estilos de Tailwind.
+ * @returns {JSX.Element} El encabezado completo del sitio.
+ */
 
 function Header() {
   return (
