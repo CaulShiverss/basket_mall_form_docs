@@ -8,9 +8,9 @@ import ProductoForm from "../components/ProductForm";
 
 function AdminPage() {
   return (
-    <section className="flex-col items-center justify-center min-h-[70vh]">
+    <section className="h-screen w-full overflow-hidden flex flex-col">
       {/* Título del panel administrativo */}
-      <p className="h1__basketmall">
+      <p className="h1__basketmall text-center pb-5">
         Panel de Administrador
       </p>
       <ProductoForm />

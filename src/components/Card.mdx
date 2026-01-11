@@ -1,37 +1,50 @@
 import { Meta, Primary, Controls, Story } from '@storybook/addon-docs/blocks';
+
 import * as CardStories from './Card.stories';
+
 import Card from './Card'
 
 <Meta of={CardStories} />
 
-# Tarjeta de detalles de Producto (`<Card />`)
+# Tarjeta de Producto (`<Card />`)
 
-## Descripción Principal
+El componente `Card` es el bloque de construcción fundamental de la interfaz de **Basket Mall**. Se utiliza para representar visualmente cualquier recurso (productos, categorías o artículos de blog) de forma aislada y accesible.
 
-Este componente se encacarga de mostrar una tarjeta con los detalles de un producto dinámicamente
+## Visualización Principal
+
+Esta es la representación estándar del componente. Puedes interactuar con sus propiedades en la tabla inferior.
 
 <Primary />
 
-## Tablas de propiedades
+## Guía de Referencia (Props)
+
+La siguiente tabla detalla las propiedades disponibles para personalizar el comportamiento y aspecto de la tarjeta.
 
 <Controls />
 
-## Ejemplos
+---
 
-### Basico
+## Variaciones de Uso
+
+### Básico
+Uso estándar para el catálogo general.
+
 
 <Story of={CardStories.Basico} />
 
 ---
 
-### BiografiaLarga
 
-<Story of={CardStories.BiografiaLarga} />
+### Descripción Detallada
+Muestra cómo el layout gestiona textos extensos sin romper la consistencia visual.
+
+
+<Story of={CardStories.DescripcionLarga} />
 
 ---
 
-### Sin Foto
+
+### Caso de Borde: Sin Foto
+Visualización del componente cuando no se proporciona una URL de imagen válida.
 
 <Story of={CardStories.SinFoto} />
-
----

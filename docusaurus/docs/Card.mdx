@@ -1,48 +1,53 @@
 ---
 id: Card
-title: Tarjeta de detalles del producto (`<Card />`)
-
+title: Componente Card
+sidebar_label: Tarjeta de Producto
 ---
 
 import Card from '../components/Card.jsx';
 
-## Descripción Principal
+# Tarjeta de Detalles del Producto (`<Card />`)
 
-Este componente se encacarga de mostrar una tarjeta con los detalles de un producto dinámicamente
+El componente `Card` es la unidad visual principal para mostrar productos en el catálogo. Está diseñado siguiendo criterios de accesibilidad y optimización de carga (Lazy Loading).
 
-## Ejemplos
+## Propiedades (Props)
 
-### Basico
-
- <Card
-        nombre= "Balón Spalding"
-        foto="https://spalding-basketball.com/cdn/shop/products/spalding-fiba-varsity-tf-150-rubber-indooroutdoor-basketball-941958.jpg?v=1754024368"
-                        >
-            Balón oficial de baloncesto Spalding, ideal para interiores y exteriores.
-
-</Card>
+| Propiedad | Tipo | Obligatorio | Descripción |
+| :--- | :--- | :--- | :--- |
+| `nombre` | `string` | Sí | Nombre del producto. Se usa para el título y el atributo `alt`. |
+| `foto` | `string` | Sí | URL de la imagen del producto. |
+| `children` | `node` | No | Descripción o contenido adicional que aparecerá bajo el título. |
 
 ---
 
-### BiografiaLarga
+## Casos de Uso
 
- <Card
-        nombre= "Giannis Immortality 4"
-        foto="https://dam.elcorteingles.es/producto/www-001017725008183-03.jpg?impolicy=Resize&width=1200&height=1200"
-                        >
-            Zapatillas Nike inspiradas en Giannis Antetokounmpo, con excelente amortiguación. Pensadas para el juego exterior en pistas de cemento o ladrillo. Perfecto agarre del tobillo para jugadores interiores.
+### 1. Uso Básico
+Ideal para listados generales con descripciones cortas.
 
+<Card 
+  nombre="Balón Spalding" 
+  foto="https://spalding-basketball.com/cdn/shop/products/spalding-fiba-varsity-tf-150-rubber-indooroutdoor-basketball-941958.jpg?v=1754024368"
+>
+  Balón oficial de baloncesto Spalding, ideal para interiores y exteriores.
 </Card>
 
----
+### 2. Descripción Extensa
+Prueba de usabilidad para textos largos: el componente adapta su altura según el contenido.
 
-### Sin Foto
-
- <Card
-        nombre= "Canasta Profesional"
-        foto=""
-                        >
-        Canasta de baloncesto profesional con base móvil y tablero de acrílico.
+<Card 
+  nombre="Giannis Immortality 4" 
+  foto="https://dam.elcorteingles.es/producto/www-001017725008183-03.jpg?impolicy=Resize&width=1200&height=1200"
+>
+  Zapatillas Nike inspiradas en Giannis Antetokounmpo. Con excelente amortiguación y tracción lateral, diseñadas específicamente para jugadores con un estilo de juego agresivo en la pintura.
 </Card>
 
----
+### 3. Estado sin Imagen
+*Nota: Se recomienda usar una URL de imagen de relleno si no hay foto disponible para mantener la coherencia visual.*
+
+<Card 
+  nombre="Canasta Profesional" 
+  foto="https://via.placeholder.com/300x200?text=Sin+Imagen"
+>
+  Canasta de baloncesto profesional con base móvil y tablero de acrílico.
+</Card>

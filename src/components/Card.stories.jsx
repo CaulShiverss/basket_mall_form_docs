@@ -14,23 +14,23 @@ const Template = (args) => <Card {...args} />;
 
 export const Basico = Template.bind({});
 Basico.args = {
-  foto: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS49q2IH6MCj-DC0zl8INPrZb4rIrXyCWwxIHCyWIlX3V9E42BYi6GGFIqaB_TicxUGqWdEIyf2UVTfGaCw1WKRZIJAVOcCWPybsAUVoA&s=10",
-  nombre: "Bradd Pitt",
-  children: "Actor con amplia experiencia en cine independiente."
+  foto: "https://spalding-basketball.com/cdn/shop/products/spalding-fiba-varsity-tf-150-rubber-indooroutdoor-basketball-941958.jpg?v=1754024368",
+  nombre: "Balón Spalding",
+  children: "Balón oficial de baloncesto Spalding, ideal para interiores y exteriores."
 };
 
-export const BiografiaLarga = Template.bind({});
-BiografiaLarga.args = {
-  foto: "https://7days.ru/upload/images/d40/682d2fd70fb45eeebe76170ff6faf.jpg",
-  nombre: "Robert Johnson",
+export const DescripcionLarga = Template.bind({});
+DescripcionLarga.args = {
+  foto: "https://dam.elcorteingles.es/producto/www-001017725008183-03.jpg?impolicy=Resize&width=1200&height=1200",
+  nombre: "Giannis Immortality 4",
   children:
-    "Actor veterano con más de 40 años de trayectoria. Ha participado en más de 60 películas y ha sido nominado en diversas ocasiones por su contribución a la industria cinematográfica. Su versatilidad lo ha llevado a interpretar desde papeles dramáticos hasta personajes cómicos inolvidables."
+    "Zapatillas Nike inspiradas en Giannis Antetokounmpo, con excelente amortiguación. Pensadas para el juego exterior en pistas de cemento o ladrillo. Perfecto agarre del tobillo para jugadores interiores."
 };
 
 export const SinFoto = Template.bind({});
 SinFoto.args = {
   foto: "",
-  nombre: "Mr.Sin Foto",
+  nombre: "Canasta Profesional",
   children:
-    "Actor veterano con más de 40 años de trayectoria. Ha participado en más de 60 películas y ha sido nominado en diversas ocasiones por su contribución a la industria cinematográfica. Su versatilidad lo ha llevado a interpretar desde papeles dramáticos hasta personajes cómicos inolvidables."
+    "Canasta de baloncesto profesional con base móvil y tablero de acrílico."
 };

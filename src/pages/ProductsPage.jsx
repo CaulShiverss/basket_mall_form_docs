@@ -12,58 +12,53 @@ import SearchBar from "../components/SearchBar";
  */
 
 function ProductsPage() {
-
   const [searchTerm, setSearchTerm] = useState("");
 
   const filteredProducts = useMemo(() => {
-    // 1. Aplanar la lista de actores y agregar información necesaria para el enlac
+    const productsWithIndex = productosBasket.map((p, index) => ({ ...p, originalIndex: index }));
+    if (!searchTerm) return productsWithIndex;
 
-    if (!searchTerm) {
-      return productosBasket; // Si no hay término, devuelve la lista completa
-    }
-
-    // 2. Filtrar por el nombre del actor
     const lowerCaseSearchTerm = searchTerm.toLowerCase();
-    return productosBasket.filter((producto) =>
+    return productsWithIndex.filter((producto) =>
       producto.nombre.toLowerCase().includes(lowerCaseSearchTerm)
     );
-  }, [searchTerm]); //
+  }, [searchTerm]);
 
   return (
-
     <GridLayout titulo="Productos">
+      <p className="product-page__text">Listado de productos disponibles:</p>
 
-      {/* Introducción al listado */}
-      <p className="body-text pb-6">
-        Listado de productos disponibles:
-      </p>
-
+      {/* 1. El SearchBar debe tener un input con id y label para que el lector de voz y el tab funcionen */}
       <SearchBar
-          searchTerm={searchTerm}
-          onSearchChange={setSearchTerm}
-          placeholder="Buscar productos..."
-        />
+        searchTerm={searchTerm}
+        onSearchChange={setSearchTerm}
+        placeholder="Buscar productos..."
+      />
 
-      {/* Sección con la grilla de productos */}
-      <section className="w-full mt-8">
-        <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 list-none p-0 items-stretch">
-          {filteredProducts.map((producto, index) => (
-            // Enlace a la página de detalles del producto
-            <Link to={`/productos/${index}`} key={index} className="no-underline">
-
-              <Card
-                key={index}                // Clave para iteración en React
-                nombre={producto.nombre}   // Nombre del producto
-                foto={producto.imagen}     // Imagen del producto
-                categoria={producto.categoria} // Categoría
-                precio={producto.precio}   // Precio
+      <section className="product-list" aria-label="Catálogo de productos">
+        <ul className="product-list__grid">
+          {filteredProducts.map((producto) => (
+            <li key={producto.originalIndex} className="product-list__item">
+              <Link
+                to={`/productos/${producto.originalIndex}`}
+                className="product-list__item-link"
+                aria-label={`Ver detalles de ${producto.nombre}`}
               >
-                {producto.descripcion}      {/* Descripción como children */}
-              </Card>
-
-            </Link>
+                <Card
+                  nombre={producto.nombre}
+                  foto={producto.imagen}
+                  categoria={producto.categoria}
+                  precio={producto.precio}
+                >
+                  {producto.descripcion}
+                </Card>
+              </Link>
+            </li>
           ))}
         </ul>
+        {filteredProducts.length === 0 && (
+          <p role="status" className="no-results">No se encontraron productos.</p>
+        )}
       </section>
     </GridLayout>
   );

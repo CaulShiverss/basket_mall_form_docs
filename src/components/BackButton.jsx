@@ -14,6 +14,7 @@ function BackButton() {
       onClick={() => navigate(-1)} // Retrocede una página en el historial
       aria-label="Volver a la página anterior" // Accesibilidad para lectores de pantalla
       className="back-button"
+      type="button"
     >
       {/* Flecha decorativa: aria-hidden evita que la lean los lectores de pantalla */}
       <span aria-hidden="true">←</span>

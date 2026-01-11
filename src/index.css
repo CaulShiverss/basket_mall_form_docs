@@ -63,48 +63,133 @@
    ========================================== */
 
 @layer components {
-  /* Bloque: El formulario completo */
-  .form-admin {
-    @apply bg-white p-6 rounded-lg shadow-xl max-w-xl mx-auto w-full;
+  .admin-container {
+    @apply flex h-full w-full bg-white items-stretch;
   }
 
-  /* Elemento: Título */
-  .form-admin__title {
-    @apply text-2xl font-bold mb-6 text-gray-800; /* o tu clase h4__basketmall */
+  /* Columna del Formulario */
+  .form-column {
+    @apply w-full lg:w-1/2 h-full flex flex-col justify-center items-center px-6 md:px-24;
   }
 
-  /* Elemento: Grupo de campo (Label + Input + Error) */
-  .form-admin__field {
-    @apply mb-4 space-y-1;
+  /* Columna de la Imagen */
+  .image-column {
+    @apply hidden lg:block lg:w-1/2 h-full bg-cover bg-center relative;
+    background-image: url("https://images.unsplash.com/photo-1504450758481-7338eba7524a?q=80&w=2069&auto=format&fit=crop");
   }
 
-  /* Elemento: Etiqueta */
-  .form-admin__label {
-    @apply block text-sm font-medium text-gray-700;
+  /* --- BLOQUE FORMULARIO --- */
+  .form-title {
+    @apply text-4xl font-extrabold mb-8 text-black tracking-tight;
   }
 
-  /* Elemento: Input base */
-  .form-admin__input {
-    @apply mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm 
-           focus:ring-blue-500 focus:border-blue-500 outline-none transition-colors;
+  .product-form {
+    @apply space-y-4 w-full max-w-lg;
   }
 
-  /* Modificador: Input con error */
-  .form-admin__input--error {
-    @apply border-red-500 focus:ring-red-500 bg-red-50;
+  .field-group {
+    @apply flex flex-col space-y-2;
   }
 
-  /* Elemento: Mensaje de error */
-  .form-admin__error-text {
-    @apply mt-1 text-sm text-red-600;
+  .field-group label {
+    @apply text-sm font-bold text-gray-600;
   }
 
-  /* Elemento: Botón de envío */
-  .form-admin__button {
-    @apply w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm 
-           font-medium text-white bg-blue-600 hover:bg-blue-700 
-           focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 
-           disabled:opacity-50 disabled:cursor-not-allowed transition-all;
+  /* Estilos para inputs y textareas */
+  .field-group input,
+  .field-group textarea {
+    @apply w-full p-3 border border-gray-300 rounded-md outline-none transition-all
+           focus:border-orange-400 placeholder:text-gray-300;
+  }
+
+  /* --- MODIFICADORES Y ESTADOS --- */
+
+  /* Borde verde de la imagen (Success) */
+  .input-success {
+    @apply border-emerald-400 focus:border-emerald-500 bg-white;
+  }
+
+  /* Borde rojo de error */
+  .input-error {
+    @apply border-red-500 focus:border-red-500 bg-red-50;
+  }
+
+  .success-msg {
+    @apply text-emerald-500 text-xs font-semibold mt-1;
+  }
+
+  .error-msg {
+    @apply text-red-500 text-xs mt-1;
+  }
+
+  /* Grupo en fila (Precio y Categoría) */
+  .row-group {
+    @apply flex gap-4 w-full;
+  }
+
+  .row-group .field-group {
+    @apply flex-1;
+  }
+
+  /* --- BOTÓN Y DECORACIÓN --- */
+  .submit-btn {
+    @apply bg-[#ff8000] hover:bg-[#e67300] text-white font-bold py-3 px-12 
+           rounded-lg transition-colors shadow-sm w-full md:w-max mt-6 text-lg;
+  }
+}
+
+/* ==========================================
+   BLOQUE: Header
+   Descripción: Estilos específicos para el componente Header y su estructura
+   ========================================== */
+@layer components {
+  .header-main {
+    @apply text-white p-4 shadow-lg;
+    background-color: var(
+      --colorprimary
+    ); /* Ajusta bg-blue-600 por tu variable primary-bg si es necesario */
+  }
+
+  .header-main__container {
+    @apply container mx-auto flex justify-between items-center;
+  }
+
+  .header-main__logo {
+    @apply text-2xl font-bold focus:outline-none focus:ring-2 focus:ring-white rounded-sm;
+  }
+}
+
+/* ==========================================
+   BLOQUE: Catálogo de Productos
+   Descripción: Estilos para la página de productos, buscador y grilla
+   ========================================== */
+@layer components {
+  .product-page__text {
+    @apply text-gray-700 pb-6 text-lg;
+  }
+
+  .product-list {
+    @apply w-full mt-8;
+  }
+
+  .product-list__grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 list-none p-0 items-stretch;
+  }
+
+  .product-list__item-link {
+
+    @apply no-underline block transition-all duration-300 h-full rounded-lg;
+
+    /* Estado Hover (Ratón) */
+    @apply hover:scale-[1.02];
+
+    /* Estado Focus (Teclado) */
+    @apply focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-orange-500 focus-visible:ring-offset-4 focus-visible:scale-[1.02];
+  }
+
+  /* Aseguramos que la Card ocupe todo el alto para que el foco se vea uniforme */
+  .product-list__item-link > div {
+    @apply h-full;
   }
 }
 
